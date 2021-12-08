@@ -24,3 +24,7 @@ Firebase is a backend-as-a-service (BaaS) offering by Google that features datab
 * Enable email/password and save
 
 <img src="auth1.png" width="350">
+
+* Now create a database
+
+<img src="auth1.png" width="350">
