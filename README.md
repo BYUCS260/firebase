@@ -60,7 +60,7 @@ module.exports = {
   }
 }
 ```
-* Now, modify src/App.js to have the following, but replace the firebase config with your values
+* Now, modify src/App.vue to have the following, but replace the firebase config with your values
 ```
 <template>
     <div id="app">
@@ -136,4 +136,137 @@ input {
     margin-right: 20px;
 }
 </style>
+```
+* Modify src/router/index.js to have the following routes
+```
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
+
+Vue.use(VueRouter)
+
+const routes = [
+    {
+        path: '/',
+        name: 'Home',
+        component: Home,
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        component: () =>
+            import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    },
+    {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: () =>
+            import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue'),
+        meta: {
+          authRequired: true,
+        },
+    },
+];
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
+})
+    
+export default router
+```
+* Create the Dashboard view in src/views/Dashboard.vue
+
+```
+<template>
+    <div>
+        <h2>Dashboard</h2>
+        <p>This page is only visible to users that are currently logged in</p>
+        <ul>
+            <li v-for="employee in employees" :key="employee.Name">
+                {{ employee.Name }} {{ employee.Date}}
+            </li>
+        </ul>
+    </div>
+</template>
+
+<script>
+import {getFirestore, collection, getDocs } from "firebase/firestore"; 
+const db = getFirestore();
+export default {
+    name: 'Dashboard',
+    data() {
+        return {
+            employees: []
+        }
+    },
+    methods: {
+      async getall() {
+          const querySnapshot = await getDocs(collection(db, "employees"));
+          querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data()}`);
+            console.log(doc.data());
+            this.employees.push(doc.data());
+          });
+      }
+    },
+    created: function() {
+      this.getall()
+    },
+};
+</script>
+
+<style lang="scss" scoped></style>
+```
+* And modify the src/views/About.vue to have the following content
+
+```
+<template> 
+    <div>
+        <form @submit.prevent="register">
+            <h2>Register</h2>
+            <input
+                type="email"
+                placeholder="Email address..."
+                v-model="email"
+            />
+            <input
+                type="password"
+                placeholder="password..."
+                v-model="password"
+            />
+            <button type="submit">Register</button>
+        </form>
+    </div>  
+</template>
+<script>
+import { getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+const auth = getAuth();
+export default {
+    name: 'Register',
+    data() {
+        return {
+            email: '',
+            password: '',
+        };
+    },
+    methods: { 
+        register() {
+                createUserWithEmailAndPassword(auth, this.email, this.password)
+                .then(() => {
+                    alert('Successfully registered! Please login.');
+                    this.$router.push('/');
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
+        },
+    },
+};
+</script>
+```
+* You should now be able to run your vue server and see the application
+
+```
+npm run serve
 ```
