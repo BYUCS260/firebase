@@ -15,3 +15,5 @@ Firebase is a backend-as-a-service (BaaS) offering by Google that features datab
 * When your Firebase configuration is displayed, copy the contents within the scripts tag
 
 <img src="config.png" width="350">
+* On the Console, select authentication and select 'email/password'
+<img src="auth.png" width="350">
