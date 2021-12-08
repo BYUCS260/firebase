@@ -8,4 +8,5 @@ Firebase is a backend-as-a-service (BaaS) offering by Google that features datab
 * Click “Add Project”
 * Click “Continue” to create the project (we don’t need analytics)
 
-![](add.png)
+<img src="add.png" width="350">
+
