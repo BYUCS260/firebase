@@ -17,3 +17,6 @@ Firebase is a backend-as-a-service (BaaS) offering by Google that features datab
 <img src="config.png" width="350">
 * On the Console, select authentication and select 'email/password'
 <img src="auth.png" width="350">
+* Notice that you could also choose to authenticate with Google or Facebook.
+* Enable email/password and save
+<img src="auth1.png" width="350">
