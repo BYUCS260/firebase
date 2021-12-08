@@ -28,3 +28,11 @@ Firebase is a backend-as-a-service (BaaS) offering by Google that features datab
 * Now create a database
 
 <img src="database.png" width="350">
+
+* And start the database in test mode
+
+<img src="testmode.png" width="350">
+
+* And create a collection with "Date" and "Name"
+
+<img src="collection.png" width="350">
