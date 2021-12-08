@@ -36,3 +36,7 @@ Firebase is a backend-as-a-service (BaaS) offering by Google that features datab
 * And create a collection with "Date" and "Name"
 
 <img src="collection.png" width="350">
+
+* And add a document
+
+<img src="fred.png" width="350">
