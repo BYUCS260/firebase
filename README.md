@@ -42,6 +42,98 @@ Firebase is a backend-as-a-service (BaaS) offering by Google that features datab
 <img src="fred.png" width="350">
 
 * Now create a vue project with
+
 ```
 vue create firebase
+```
+
+* And use npm to install firebase
+
+```
+npm install firebase --save
+```
+* Then create a vue.config file with the following contents if you are working on your droplet.  You should be able to see the default vue application.
+```
+module.exports = {
+  devServer: {
+    disableHostCheck: true
+  }
+}
+```
+* Now, modify src/App.js to have the following, but replace the firebase config with your values
+```
+<template>
+    <div id="app">
+        <div id="nav">
+            <router-link to="/">Home</router-link> |
+            <router-link to="/register">Register</router-link> |
+            <button @click="logout">Logout</button>
+        </div>
+        <router-view />
+    </div>
+</template>
+
+<script>
+const firebaseConfig = {
+  apiKey: "***",
+  authDomain: "***",
+  projectId: "***",
+  storageBucket: "***",
+  messagingSenderId: "***",
+  appId: "***",
+  measurementId: "***"
+};
+// Initialize Firebase
+import { initializeApp } from "firebase/app";
+let firebase = initializeApp(firebaseConfig);
+import {getAuth, signOut} from 'firebase/auth';
+const auth = getAuth();
+
+export default {
+    data() {
+        return {
+          firebase: firebase,
+        }
+    },
+    methods: {
+        logout() {
+                signOut(auth)
+                .then(() => {
+                    alert('Successfully logged out');
+                    this.$router.push('/');
+                })
+                .catch(error => {
+                    alert(error.message);
+                    this.$router.push('/');
+                });
+        },
+    },
+};
+</script>
+<style>
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+}
+
+#nav {
+    padding: 30px;
+}
+
+#nav a {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+    color: #42b983;
+}
+
+input {
+    margin-right: 20px;
+}
+</style>
 ```
