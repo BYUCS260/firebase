@@ -42,4 +42,6 @@ Firebase is a backend-as-a-service (BaaS) offering by Google that features datab
 <img src="fred.png" width="350">
 
 * Now create a vue project with
-```vue create firebase
+```
+vue create firebase
+```
