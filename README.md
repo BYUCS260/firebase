@@ -2,6 +2,10 @@
 This tutorial is intended to give you some basic information about how to use firebase authentication and the firestore database.
 ## Introduction
 Firebase is a backend-as-a-service (BaaS) offering by Google that features databases, an ML kit, cloud functions, authentication, hosting, cloud storage, and more. Firebase abstracts the complexity of building a robust and scalable backend system, enabling developers to focus on building the client side of applications.
+## Video
+You can follow this [video](https://youtu.be/zL0dKETbCNE) to build a React application that will use firebase for authentication and database operations.  So, all you will have to do is host your front end on your Cloud9 server (But firebase will also host your front end if you want it to).
+
+
 ## Firebase Setup
 
 * Visit the Firebase console and sign in with your Google account
@@ -16,12 +20,12 @@ Firebase is a backend-as-a-service (BaaS) offering by Google that features datab
 
 <img src="config.png" width="350">
 
-* On the Console, select authentication and select 'email/password'
+* On the Console, select authentication and select 'Google'
 
 <img src="auth.png" width="350">
 
-* Notice that you could also choose to authenticate with Google or Facebook.
-* Enable email/password and save
+* Notice that you could also choose to authenticate with passwords or Twitter or Facebook.
+* Enable Google and save
 
 <img src="auth1.png" width="350">
 
@@ -33,13 +37,10 @@ Firebase is a backend-as-a-service (BaaS) offering by Google that features datab
 
 <img src="testmode.png" width="350">
 
-* And create a collection with "Date" and "Name"
+* And create a collection called "posts".  It will create an automatic document.  Delete the document so it doesnt confuse you.
 
 <img src="collection.png" width="350">
 
-* And add a document
-
-<img src="fred.png" width="350">
 
 * Now create a vue project with
 
